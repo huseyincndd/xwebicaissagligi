@@ -36,7 +36,7 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-dark/70 leading-relaxed mb-6">
-                Türkiye'nin öncü OSGB'si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz.
+                Türkiye&apos;nin öncü OSGB&apos;si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz.
               </p>
               
               {/* Social Media */}

@@ -30,7 +30,7 @@ export default function HeroSection() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-8">
           <Shield className="w-5 h-5 text-[#4CAF50]" />
-          <span className="text-white/90 font-medium">Türkiye'nin Öncü OSGB'si</span>
+          <span className="text-white/90 font-medium">Türkiye&apos;nin Öncü OSGB&apos;si</span>
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold text-slate-100 [text-shadow:_0_4px_12px_rgb(0_0_0_/_60%)] leading-tight">
