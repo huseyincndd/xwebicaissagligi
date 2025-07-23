@@ -31,7 +31,7 @@ const processSteps = [
     title: "İzleme ve Sürekli İyileştirme",
     description: "Süreci düzenli olarak takip eder, raporlar sunar ve değişen koşullara göre planınızı güncelleyerek sürekli güvenliği sağlarız.",
     icon: Repeat,
-    imageUrl: "https://images.unsplash.com/photo-1531539623899-33a46078b340?q=80&w=1974&auto=format&fit=crop"
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
   }
 ];
 
