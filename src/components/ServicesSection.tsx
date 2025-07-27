@@ -57,7 +57,7 @@ const itemVariants = {
 
 export default function ServicesSection() {
   return (
-    <section id="hizmetler" className="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
+    <section id="services" className="relative bg-gradient-to-br from-gray-50 to-white py-20 md:py-28 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#003366]/5 to-[#4CAF50]/5"></div>
       

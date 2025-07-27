@@ -4,7 +4,7 @@ import { ArrowRight, Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function ContactSection() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
+    <section id="contact" className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#003366]/5 to-[#4CAF50]/5"></div>
       

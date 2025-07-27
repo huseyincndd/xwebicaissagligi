@@ -5,7 +5,7 @@ import { ArrowDown, Shield, TrendingUp, Users } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
       {/* Full-Screen Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -60,7 +60,7 @@ export default function HeroSection() {
         {/* CTA Buttons */}
         <div className="mt-8 md:mt-12 flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
           <Link
-            href="/iletisim"
+            href="#contact"
             className="group bg-gradient-to-r from-[#4CAF50] to-[#4CAF50]/90 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-xl text-base md:text-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-[#4CAF50]/25 flex items-center justify-center gap-2 md:gap-3"
           >
             <span>Teklif Al</span>
@@ -68,7 +68,7 @@ export default function HeroSection() {
           </Link>
           
           <Link
-            href="/hizmetler"
+            href="#services"
             className="group bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-xl text-base md:text-lg transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:border-white/40 flex items-center justify-center gap-2 md:gap-3"
           >
             <span>Hizmetler</span>

@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { Menu, X, Shield } from 'lucide-react';
 
 const navigationLinks = [
-  { name: 'Ana Sayfa', href: '/' },
-  { name: 'Hakkımızda', href: '/hakkimizda' },
-  { name: 'Hizmetler', href: '/hizmetler' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'İletişim', href: '/iletisim' },
+  { name: 'Ana Sayfa', href: '#home' },
+  { name: 'Hizmetler', href: '#services' },
+  { name: 'Neden Biz', href: '#why-us' },
+  { name: 'Ekibimiz', href: '#team' },
+  { name: 'Süreç', href: '#process' },
+  { name: 'SSS', href: '#faq' },
+  { name: 'İletişim', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -96,7 +98,7 @@ export default function Navbar() {
 
         {/* CTA Button - Desktop */}
         <Link
-          href="/teklif-al"
+          href="#contact"
           className={`hidden md:block font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 ${
             isScrolled
               ? 'bg-gradient-to-r from-[#4CAF50] to-[#4CAF50]/90 text-white hover:shadow-lg hover:shadow-[#4CAF50]/25'
@@ -144,7 +146,7 @@ export default function Navbar() {
               ))}
               <div className="pt-4 border-t border-gray-200">
                 <Link
-                  href="/teklif-al"
+                  href="#contact"
                   className="block w-full text-center bg-gradient-to-r from-[#4CAF50] to-[#4CAF50]/90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

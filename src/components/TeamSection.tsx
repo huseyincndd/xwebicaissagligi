@@ -137,7 +137,7 @@ const TeamMemberCard = ({ member, index }: { member: typeof teamMembers[0]; inde
 
 export default function TeamSection() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
+    <section id="team" className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#003366]/5 to-[#4CAF50]/5"></div>
       
@@ -232,13 +232,13 @@ export default function TeamSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/iletisim"
+                href="#contact"
                 className="bg-[#4CAF50] hover:bg-[#4CAF50]/90 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 hover:scale-105"
               >
                 İletişime Geçin
               </a>
               <a
-                href="/hizmetler"
+                href="#services"
                 className="bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 hover:bg-white/20"
               >
                 Hizmetlerimiz
