@@ -7,6 +7,9 @@ import ProcessSection from "../components/ProcessSection";
 import FaqSection from "../components/FaqSection";
 import ContactSection from "../components/ContactSection";
 
+// ISR için revalidation süresi (60 saniye)
+export const revalidate = 60;
+
 export default function Home() {
   return (
     <main>

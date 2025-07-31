@@ -405,6 +405,23 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
+  const revalidatePages = async () => {
+    try {
+      const response = await fetch('/api/revalidate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ path: '/' }),
+      });
+      
+      const result = await response.json();
+      console.log('Revalidation result:', result);
+    } catch (error) {
+      console.error('Revalidation error:', error);
+    }
+  };
+
   const handleSave = async (sectionKey: string) => {
     if (sectionKey === 'hero' && heroData) {
       setSaving(true);
@@ -420,6 +437,8 @@ export default function Dashboard() {
         } else {
           alert('Hero section başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('Hero update error:', error);
@@ -441,6 +460,8 @@ export default function Dashboard() {
         } else {
           alert('Services section başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('Services update error:', error);
@@ -462,6 +483,8 @@ export default function Dashboard() {
         } else {
           alert('WhyUs section başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('WhyUs update error:', error);
@@ -483,6 +506,8 @@ export default function Dashboard() {
         } else {
           alert('SocialProof section başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('SocialProof update error:', error);
@@ -548,6 +573,8 @@ export default function Dashboard() {
 
         alert('Team section ve ekip üyeleri başarıyla güncellendi!');
         setEditing(prev => ({ ...prev, [sectionKey]: false }));
+        // Ana sayfayı revalidate et
+        await revalidatePages();
       } catch (error) {
         console.error('Team update error:', error);
         alert('Güncelleme sırasında hata oluştu!');
@@ -585,6 +612,8 @@ export default function Dashboard() {
 
         alert('Process section ve süreç adımları başarıyla güncellendi!');
         setEditing(prev => ({ ...prev, [sectionKey]: false }));
+        // Ana sayfayı revalidate et
+        await revalidatePages();
       } catch (error) {
         console.error('Process update error:', error);
         alert('Güncelleme sırasında hata oluştu!');
@@ -643,6 +672,8 @@ export default function Dashboard() {
 
         alert('FAQ section ve sorular başarıyla güncellendi!');
         setEditing(prev => ({ ...prev, [sectionKey]: false }));
+        // Ana sayfayı revalidate et
+        await revalidatePages();
       } catch (error) {
         console.error('FAQ update error:', error);
         alert('Güncelleme sırasında hata oluştu!');
@@ -663,6 +694,8 @@ export default function Dashboard() {
         } else {
           alert('Contact section başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('Contact update error:', error);
@@ -684,6 +717,8 @@ export default function Dashboard() {
         } else {
           alert('Navbar başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('Navbar update error:', error);
@@ -705,6 +740,8 @@ export default function Dashboard() {
         } else {
           alert('Footer başarıyla güncellendi!');
           setEditing(prev => ({ ...prev, [sectionKey]: false }));
+          // Ana sayfayı revalidate et
+          await revalidatePages();
         }
       } catch (error) {
         console.error('Footer update error:', error);
