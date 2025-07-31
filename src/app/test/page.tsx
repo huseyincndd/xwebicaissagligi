@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { testConnection, addTestData } from '@/lib/supabase';
 
 export default function TestPage() {
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{ success: boolean; message?: string; data?: unknown } | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleTestConnection = async () => {

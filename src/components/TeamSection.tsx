@@ -425,10 +425,10 @@ export default function TeamSection() {
               <div key={stat.id} className="text-center">
                 <div className={`w-16 h-16 bg-gradient-to-br ${index % 2 === 0 ? 'from-[#4CAF50] to-[#4CAF50]/90' : 'from-[#003366] to-[#003366]/90'} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
                   <IconComponent className="w-8 h-8 text-white" />
-                </div>
+            </div>
                 <h3 className="text-2xl font-bold text-[#003366] mb-1">{stat.number}{stat.label.includes('%') ? '' : '+'}</h3>
                 <p className="text-gray-600 text-sm">{stat.label}</p>
-              </div>
+          </div>
             );
           })}
         </motion.div>

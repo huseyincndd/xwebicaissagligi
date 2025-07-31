@@ -1000,7 +1000,7 @@ export default function Dashboard() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Arka Plan Resmi</h3>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Resim URL'si
+                        Resim URL&apos;si
                       </label>
                       {editing[activeSection] ? (
                         <input
@@ -1348,7 +1348,7 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Resim URL'si
+                          Resim URL&apos;si
                         </label>
                         {editing[activeSection] ? (
                           <input
@@ -1439,7 +1439,7 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Resim URL'si
+                          Resim URL&apos;si
                         </label>
                         {editing[activeSection] ? (
                           <input
@@ -1530,7 +1530,7 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Resim URL'si
+                          Resim URL&apos;si
                         </label>
                         {editing[activeSection] ? (
                           <input
@@ -1948,7 +1948,7 @@ export default function Dashboard() {
                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Arka Plan Resmi</h3>
                      <div>
                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                         Resim URL'si
+                         Resim URL&apos;si
                        </label>
                        {editing[activeSection] ? (
                          <input
@@ -2969,7 +2969,7 @@ export default function Dashboard() {
                              </div>
                              <div className="md:col-span-2">
                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                 Resim URL'si
+                                 Resim URL&apos;si
                                </label>
                                {editing[activeSection] ? (
                                  <input
@@ -3172,7 +3172,7 @@ export default function Dashboard() {
                              </div>
                              <div>
                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                 Resim URL'si
+                                 Resim URL&apos;si
                                </label>
                                {editing[activeSection] ? (
                                  <input

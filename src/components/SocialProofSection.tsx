@@ -115,7 +115,7 @@ const PremiumAnimatedCounter = ({ end, suffix }: { end: number; suffix: string }
 };
 
 // Premium Stat Card Component with Frosted Glass Effect
-const PremiumStatCard = ({ stat }: { stat: any }) => {
+const PremiumStatCard = ({ stat }: { stat: { icon: string; color: string; gradient: string; number: number; suffix: string; label: string } }) => {
   const IconComponent = iconMap[stat.icon as keyof typeof iconMap] || ExperienceIcon;
   
   return (

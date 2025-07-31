@@ -110,32 +110,32 @@ export default function FaqSection() {
         setFaqItems([
           {
             id: 1,
-            question: "OSGB hizmeti almak yasal bir zorunluluk mu?",
-            answer: "Evet, 6331 sayılı İş Sağlığı ve Güvenliği Kanunu'na göre, bir veya daha fazla çalışanı olan tehlike sınıfına bakılmaksızın tüm işyerleri OSGB hizmeti almakla veya kendi bünyesinde İSG profesyoneli bulundurmakla yükümlüdür.",
+    question: "OSGB hizmeti almak yasal bir zorunluluk mu?",
+    answer: "Evet, 6331 sayılı İş Sağlığı ve Güvenliği Kanunu'na göre, bir veya daha fazla çalışanı olan tehlike sınıfına bakılmaksızın tüm işyerleri OSGB hizmeti almakla veya kendi bünyesinde İSG profesyoneli bulundurmakla yükümlüdür.",
             icon: "HelpCircle",
             order_number: 1
-          },
-          {
+  },
+  {
             id: 2,
-            question: "Risk değerlendirmesi ne sıklıkla yenilenmelidir?",
-            answer: "Çok tehlikeli sınıftaki işyerlerinde en geç iki yılda bir, tehlikeli sınıfta dört yılda bir ve az tehlikeli sınıfta altı yılda bir yenilenmelidir. Ayrıca işyerinde yeni bir makine, süreç veya kaza olması durumunda derhal yenilenir.",
+    question: "Risk değerlendirmesi ne sıklıkla yenilenmelidir?",
+    answer: "Çok tehlikeli sınıftaki işyerlerinde en geç iki yılda bir, tehlikeli sınıfta dört yılda bir ve az tehlikeli sınıfta altı yılda bir yenilenmelidir. Ayrıca işyerinde yeni bir makine, süreç veya kaza olması durumunda derhal yenilenir.",
             icon: "FileText",
             order_number: 2
-          },
-          {
+  },
+  {
             id: 3,
-            question: "Temel İSG eğitimleri kimler için zorunludur?",
-            answer: "İşe yeni başlayan tüm çalışanlar ve çalışma yeri veya işi değişenler için zorunludur. Ayrıca, tüm çalışanların yasal olarak belirlenmiş periyotlarla (tehlike sınıfına göre 1, 2 veya 3 yılda bir) bu eğitimi tekrarlaması gerekmektedir.",
+    question: "Temel İSG eğitimleri kimler için zorunludur?",
+    answer: "İşe yeni başlayan tüm çalışanlar ve çalışma yeri veya işi değişenler için zorunludur. Ayrıca, tüm çalışanların yasal olarak belirlenmiş periyotlarla (tehlike sınıfına göre 1, 2 veya 3 yılda bir) bu eğitimi tekrarlaması gerekmektedir.",
             icon: "BookOpen",
             order_number: 3
-          },
-          {
+  },
+  {
             id: 4,
-            question: "Acil durum planı neleri içermelidir?",
-            answer: "Acil durum planı; yangın, deprem, sel gibi olası afet ve acil durumları, tahliye yollarını, toplanma alanlarını, acil durum ekiplerini (söndürme, kurtarma, ilk yardım) ve bu ekiplerin görevlerini detaylı bir şekilde içermelidir.",
+    question: "Acil durum planı neleri içermelidir?",
+    answer: "Acil durum planı; yangın, deprem, sel gibi olası afet ve acil durumları, tahliye yollarını, toplanma alanlarını, acil durum ekiplerini (söndürme, kurtarma, ilk yardım) ve bu ekiplerin görevlerini detaylı bir şekilde içermelidir.",
             icon: "AlertTriangle",
             order_number: 4
-          }
+  }
         ]);
       } finally {
         setLoading(false);
