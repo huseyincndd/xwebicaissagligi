@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LogOut, Settings, FileText } from 'lucide-react';
 
@@ -10,10 +10,17 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Login sayfası için authentication kontrolü yapma
+    if (pathname === '/admin') {
+      setIsLoading(false);
+      return;
+    }
+
     // Basit authentication kontrolü
     const checkAuth = () => {
       // URL'den authentication durumunu kontrol et
@@ -30,7 +37,12 @@ export default function AdminLayout({
     };
 
     checkAuth();
-  }, [router]);
+  }, [router, pathname]);
+
+  // Login sayfası için layout'u bypass et
+  if (pathname === '/admin') {
+    return <>{children}</>;
+  }
 
   if (isLoading) {
     return (

@@ -48,13 +48,7 @@ export default function AdminPage() {
 
   // Login formu
   return (
-    <>
-      {/* Debug div */}
-      <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999 }}>
-        ADMIN PAGE LOADED - {new Date().toLocaleTimeString()}
-      </div>
-      
-      <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -127,6 +121,5 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
-    </>
   );
 } 
