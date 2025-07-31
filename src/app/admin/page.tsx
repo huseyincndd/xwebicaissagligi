@@ -1,12 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { signIn, getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Shield, Eye, EyeOff } from 'lucide-react';
 
 export default function AdminPage() {
-  const { data: session, status } = useSession();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -14,12 +12,18 @@ export default function AdminPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  // Eğer giriş yapılmışsa dashboard'a yönlendir
+  console.log('AdminPage component rendered');
+  console.log('Current pathname:', window.location.pathname);
+
+  // Eğer zaten giriş yapılmışsa dashboard'a yönlendir
   useEffect(() => {
-    if (session) {
-      router.push('/admin/dashboard');
+    // Client-side'da localStorage'ı kontrol et
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('admin-auth') === 'true') {
+        router.push('/admin/dashboard');
+      }
     }
-  }, [session, router]);
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,16 +31,13 @@ export default function AdminPage() {
     setError('');
 
     try {
-      const result = await signIn('credentials', {
-        username,
-        password,
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError('Kullanıcı adı veya şifre hatalı!');
-      } else {
+      // Basit authentication (environment variable'lar olmadan)
+      if (username === 'admin' && password === 'admin123') {
+        // Başarılı giriş - localStorage'a kaydet ve dashboard'a yönlendir
+        localStorage.setItem('admin-auth', 'true');
         router.push('/admin/dashboard');
+      } else {
+        setError('Kullanıcı adı veya şifre hatalı!');
       }
     } catch (error) {
       setError('Bir hata oluştu!');
@@ -45,27 +46,15 @@ export default function AdminPage() {
     }
   };
 
-  // Loading durumu
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center">
-        <div className="text-white text-xl">Yükleniyor...</div>
-      </div>
-    );
-  }
-
-  // Eğer giriş yapılmışsa loading göster
-  if (session) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center">
-        <div className="text-white text-xl">Yönlendiriliyor...</div>
-      </div>
-    );
-  }
-
   // Login formu
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center p-4">
+    <>
+      {/* Debug div */}
+      <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999 }}>
+        ADMIN PAGE LOADED - {new Date().toLocaleTimeString()}
+      </div>
+      
+      <div className="min-h-screen bg-gradient-to-br from-[#003366] to-[#4CAF50] flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -138,5 +127,6 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
+    </>
   );
 } 

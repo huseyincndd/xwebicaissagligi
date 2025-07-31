@@ -1,8 +1,7 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { LogOut, Settings, FileText } from 'lucide-react';
 
 export default function AdminLayout({
@@ -10,16 +9,30 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: session, status } = useSession();
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/admin');
-    }
-  }, [status, router]);
+    // Basit authentication kontrolü
+    const checkAuth = () => {
+      // URL'den authentication durumunu kontrol et
+      const urlParams = new URLSearchParams(window.location.search);
+      const auth = urlParams.get('auth');
+      
+      if (auth === 'true' || localStorage.getItem('admin-auth') === 'true') {
+        setIsAuthenticated(true);
+        localStorage.setItem('admin-auth', 'true');
+      } else {
+        router.push('/admin');
+      }
+      setIsLoading(false);
+    };
 
-  if (status === 'loading') {
+    checkAuth();
+  }, [router]);
+
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-gray-600">Yükleniyor...</div>
@@ -27,11 +40,12 @@ export default function AdminLayout({
     );
   }
 
-  if (!session) {
+  if (!isAuthenticated) {
     return null;
   }
 
   const handleLogout = () => {
+    localStorage.removeItem('admin-auth');
     router.push('/admin');
   };
 
