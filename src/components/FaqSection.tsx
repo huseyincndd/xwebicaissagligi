@@ -1,34 +1,148 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, FileText, BookOpen, AlertTriangle } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
-const faqData = [
-  {
-    question: "OSGB hizmeti almak yasal bir zorunluluk mu?",
-    answer: "Evet, 6331 sayılı İş Sağlığı ve Güvenliği Kanunu'na göre, bir veya daha fazla çalışanı olan tehlike sınıfına bakılmaksızın tüm işyerleri OSGB hizmeti almakla veya kendi bünyesinde İSG profesyoneli bulundurmakla yükümlüdür.",
-    icon: HelpCircle
-  },
-  {
-    question: "Risk değerlendirmesi ne sıklıkla yenilenmelidir?",
-    answer: "Çok tehlikeli sınıftaki işyerlerinde en geç iki yılda bir, tehlikeli sınıfta dört yılda bir ve az tehlikeli sınıfta altı yılda bir yenilenmelidir. Ayrıca işyerinde yeni bir makine, süreç veya kaza olması durumunda derhal yenilenir.",
-    icon: FileText
-  },
-  {
-    question: "Temel İSG eğitimleri kimler için zorunludur?",
-    answer: "İşe yeni başlayan tüm çalışanlar ve çalışma yeri veya işi değişenler için zorunludur. Ayrıca, tüm çalışanların yasal olarak belirlenmiş periyotlarla (tehlike sınıfına göre 1, 2 veya 3 yılda bir) bu eğitimi tekrarlaması gerekmektedir.",
-    icon: BookOpen
-  },
-  {
-    question: "Acil durum planı neleri içermelidir?",
-    answer: "Acil durum planı; yangın, deprem, sel gibi olası afet ve acil durumları, tahliye yollarını, toplanma alanlarını, acil durum ekiplerini (söndürme, kurtarma, ilk yardım) ve bu ekiplerin görevlerini detaylı bir şekilde içermelidir.",
-    icon: AlertTriangle
-  }
-];
+interface FaqData {
+  id: number;
+  badge_text: string;
+  main_title: string;
+  subtitle: string;
+}
+
+interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+  icon: string;
+  order_number: number;
+}
+
+const iconMap = {
+  HelpCircle: HelpCircle,
+  FileText: FileText,
+  BookOpen: BookOpen,
+  AlertTriangle: AlertTriangle
+};
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [faqData, setFaqData] = useState<FaqData | null>(null);
+  const [faqItems, setFaqItems] = useState<FaqItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchFaqData() {
+      try {
+        // FAQ section data'yı yükle
+        const { data: faqData, error: faqError } = await supabase
+          .from('faq')
+          .select('*')
+          .limit(1)
+          .single();
+
+        if (faqError) {
+          console.error('FAQ data fetch error:', faqError);
+          // Varsayılan verileri kullan
+          setFaqData({
+            id: 1,
+            badge_text: 'Sıkça Sorulan Sorular',
+            main_title: 'Sıkça Sorulan Sorular',
+            subtitle: 'Hizmetlerimiz ve süreçlerimiz hakkında en çok merak edilen konuları sizin için derledik.'
+          });
+        } else {
+          setFaqData(faqData);
+        }
+
+        // FAQ items data'yı yükle
+        const { data: itemsData, error: itemsError } = await supabase
+          .from('faq_items')
+          .select('*')
+          .order('order_number', { ascending: true });
+
+        if (itemsError) {
+          console.error('FAQ items fetch error:', itemsError);
+          // Varsayılan verileri kullan
+          setFaqItems([
+            {
+              id: 1,
+              question: "OSGB hizmeti almak yasal bir zorunluluk mu?",
+              answer: "Evet, 6331 sayılı İş Sağlığı ve Güvenliği Kanunu'na göre, bir veya daha fazla çalışanı olan tehlike sınıfına bakılmaksızın tüm işyerleri OSGB hizmeti almakla veya kendi bünyesinde İSG profesyoneli bulundurmakla yükümlüdür.",
+              icon: "HelpCircle",
+              order_number: 1
+            },
+            {
+              id: 2,
+              question: "Risk değerlendirmesi ne sıklıkla yenilenmelidir?",
+              answer: "Çok tehlikeli sınıftaki işyerlerinde en geç iki yılda bir, tehlikeli sınıfta dört yılda bir ve az tehlikeli sınıfta altı yılda bir yenilenmelidir. Ayrıca işyerinde yeni bir makine, süreç veya kaza olması durumunda derhal yenilenir.",
+              icon: "FileText",
+              order_number: 2
+            },
+            {
+              id: 3,
+              question: "Temel İSG eğitimleri kimler için zorunludur?",
+              answer: "İşe yeni başlayan tüm çalışanlar ve çalışma yeri veya işi değişenler için zorunludur. Ayrıca, tüm çalışanların yasal olarak belirlenmiş periyotlarla (tehlike sınıfına göre 1, 2 veya 3 yılda bir) bu eğitimi tekrarlaması gerekmektedir.",
+              icon: "BookOpen",
+              order_number: 3
+            },
+            {
+              id: 4,
+              question: "Acil durum planı neleri içermelidir?",
+              answer: "Acil durum planı; yangın, deprem, sel gibi olası afet ve acil durumları, tahliye yollarını, toplanma alanlarını, acil durum ekiplerini (söndürme, kurtarma, ilk yardım) ve bu ekiplerin görevlerini detaylı bir şekilde içermelidir.",
+              icon: "AlertTriangle",
+              order_number: 4
+            }
+          ]);
+        } else {
+          setFaqItems(itemsData);
+        }
+      } catch (error) {
+        console.error('FAQ data fetch error:', error);
+        // Varsayılan verileri kullan
+        setFaqData({
+          id: 1,
+          badge_text: 'Sıkça Sorulan Sorular',
+          main_title: 'Sıkça Sorulan Sorular',
+          subtitle: 'Hizmetlerimiz ve süreçlerimiz hakkında en çok merak edilen konuları sizin için derledik.'
+        });
+        setFaqItems([
+          {
+            id: 1,
+            question: "OSGB hizmeti almak yasal bir zorunluluk mu?",
+            answer: "Evet, 6331 sayılı İş Sağlığı ve Güvenliği Kanunu'na göre, bir veya daha fazla çalışanı olan tehlike sınıfına bakılmaksızın tüm işyerleri OSGB hizmeti almakla veya kendi bünyesinde İSG profesyoneli bulundurmakla yükümlüdür.",
+            icon: "HelpCircle",
+            order_number: 1
+          },
+          {
+            id: 2,
+            question: "Risk değerlendirmesi ne sıklıkla yenilenmelidir?",
+            answer: "Çok tehlikeli sınıftaki işyerlerinde en geç iki yılda bir, tehlikeli sınıfta dört yılda bir ve az tehlikeli sınıfta altı yılda bir yenilenmelidir. Ayrıca işyerinde yeni bir makine, süreç veya kaza olması durumunda derhal yenilenir.",
+            icon: "FileText",
+            order_number: 2
+          },
+          {
+            id: 3,
+            question: "Temel İSG eğitimleri kimler için zorunludur?",
+            answer: "İşe yeni başlayan tüm çalışanlar ve çalışma yeri veya işi değişenler için zorunludur. Ayrıca, tüm çalışanların yasal olarak belirlenmiş periyotlarla (tehlike sınıfına göre 1, 2 veya 3 yılda bir) bu eğitimi tekrarlaması gerekmektedir.",
+            icon: "BookOpen",
+            order_number: 3
+          },
+          {
+            id: 4,
+            question: "Acil durum planı neleri içermelidir?",
+            answer: "Acil durum planı; yangın, deprem, sel gibi olası afet ve acil durumları, tahliye yollarını, toplanma alanlarını, acil durum ekiplerini (söndürme, kurtarma, ilk yardım) ve bu ekiplerin görevlerini detaylı bir şekilde içermelidir.",
+            icon: "AlertTriangle",
+            order_number: 4
+          }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchFaqData();
+  }, []);
 
   return (
     <section id="faq" className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
@@ -47,14 +161,14 @@ export default function FaqSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-[#4CAF50]/10 border border-[#4CAF50]/20 rounded-full px-6 py-3 mb-6">
             <span className="w-2 h-2 bg-[#4CAF50] rounded-full"></span>
-            <span className="text-[#4CAF50] font-medium text-sm">Sıkça Sorulan Sorular</span>
+            <span className="text-[#4CAF50] font-medium text-sm">{faqData?.badge_text || 'Sıkça Sorulan Sorular'}</span>
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold text-[#003366] leading-tight">
-            Sıkça Sorulan <span className="text-[#4CAF50]">Sorular</span>
+            {faqData?.main_title || 'Sıkça Sorulan Sorular'}
           </h2>
           <p className="mt-6 text-lg text-dark/80 max-w-3xl mx-auto leading-relaxed">
-            Hizmetlerimiz ve süreçlerimiz hakkında en çok merak edilen konuları sizin için derledik.
+            {faqData?.subtitle || 'Hizmetlerimiz ve süreçlerimiz hakkında en çok merak edilen konuları sizin için derledik.'}
           </p>
         </motion.div>
 
@@ -66,9 +180,9 @@ export default function FaqSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          {faqData.map((item, index) => {
+          {faqItems.map((item, index) => {
             const isOpen = openIndex === index;
-            const IconComponent = item.icon;
+            const IconComponent = iconMap[item.icon as keyof typeof iconMap] || HelpCircle;
 
             return (
               <motion.div

@@ -3,8 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Shield } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
-const navigationLinks = [
+interface NavbarData {
+  id: number;
+  logo_text: string;
+  cta_button_text: string;
+}
+
+const defaultNavigationLinks = [
   { name: 'Ana Sayfa', href: '#home' },
   { name: 'Hizmetler', href: '#services' },
   { name: 'Neden Biz', href: '#why-us' },
@@ -17,6 +24,41 @@ const navigationLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [navbarData, setNavbarData] = useState<NavbarData | null>(null);
+  const [navigationLinks, setNavigationLinks] = useState(defaultNavigationLinks);
+
+  useEffect(() => {
+    async function fetchNavbarData() {
+      try {
+        const { data, error } = await supabase
+          .from('navbar')
+          .select('*')
+          .limit(1)
+          .single();
+
+        if (error) {
+          console.error('Navbar data fetch error:', error);
+          // Varsayılan verileri kullan
+          setNavbarData({
+            id: 1,
+            logo_text: 'İSG PRO',
+            cta_button_text: 'Teklif Al'
+          });
+        } else {
+          setNavbarData(data);
+        }
+      } catch (error) {
+        console.error('Navbar data fetch error:', error);
+        // Varsayılan verileri kullan
+        setNavbarData({
+          id: 1,
+          logo_text: 'İSG PRO',
+          cta_button_text: 'Teklif Al'
+        });
+      }
+    }
+    fetchNavbarData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +115,7 @@ export default function Navbar() {
           }`}>
             <Shield className="w-5 h-5 text-white" />
           </div>
-          İSG PRO
+          {navbarData?.logo_text || 'İSG PRO'}
         </Link>
 
         {/* Navigation Links - Desktop */}
@@ -105,7 +147,7 @@ export default function Navbar() {
               : 'bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-primary'
           }`}
         >
-          Teklif Al
+          {navbarData?.cta_button_text || 'Teklif Al'}
         </Link>
 
         {/* Hamburger Menu - Mobile */}
@@ -150,7 +192,7 @@ export default function Navbar() {
                   className="block w-full text-center bg-gradient-to-r from-[#4CAF50] to-[#4CAF50]/90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Teklif Al
+                  {navbarData?.cta_button_text || 'Teklif Al'}
                 </Link>
               </div>
             </nav>

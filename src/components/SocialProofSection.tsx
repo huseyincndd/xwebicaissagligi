@@ -2,6 +2,31 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { supabase } from '../lib/supabase';
+
+interface SocialProofData {
+  id: number;
+  badge_text: string;
+  main_title: string;
+  subtitle: string;
+  stat1_number: number;
+  stat1_suffix: string;
+  stat1_label: string;
+  stat1_icon: string;
+  stat2_number: number;
+  stat2_suffix: string;
+  stat2_label: string;
+  stat2_icon: string;
+  stat3_number: number;
+  stat3_suffix: string;
+  stat3_label: string;
+  stat3_icon: string;
+  stat4_number: number;
+  stat4_suffix: string;
+  stat4_label: string;
+  stat4_icon: string;
+  background_image: string;
+}
 
 // Premium SVG Icons with enhanced styling
 const ExperienceIcon = () => (
@@ -43,45 +68,12 @@ const SatisfactionIcon = () => (
   </svg>
 );
 
-// Statistics data with enhanced styling
-const statsData = [
-  {
-    id: 1,
-    icon: ExperienceIcon,
-    number: 10,
-    suffix: "+",
-    label: "Yıllık Tecrübe",
-    color: "text-blue-300",
-    gradient: "from-blue-400 to-blue-600"
-  },
-  {
-    id: 2,
-    icon: ProjectsIcon,
-    number: 500,
-    suffix: "+",
-    label: "Tamamlanan Proje",
-    color: "text-emerald-300",
-    gradient: "from-emerald-400 to-emerald-600"
-  },
-  {
-    id: 3,
-    icon: StaffIcon,
-    number: 25,
-    suffix: "+",
-    label: "Uzman Personel",
-    color: "text-purple-300",
-    gradient: "from-purple-400 to-purple-600"
-  },
-  {
-    id: 4,
-    icon: SatisfactionIcon,
-    number: 99,
-    suffix: "%",
-    label: "Müşteri Memnuniyeti",
-    color: "text-orange-300",
-    gradient: "from-orange-400 to-orange-600"
-  }
-];
+const iconMap = {
+  ExperienceIcon,
+  ProjectsIcon,
+  StaffIcon,
+  SatisfactionIcon
+};
 
 // Premium Animated Counter Component
 const PremiumAnimatedCounter = ({ end, suffix }: { end: number; suffix: string }) => {
@@ -123,8 +115,8 @@ const PremiumAnimatedCounter = ({ end, suffix }: { end: number; suffix: string }
 };
 
 // Premium Stat Card Component with Frosted Glass Effect
-const PremiumStatCard = ({ stat }: { stat: typeof statsData[0] }) => {
-  const IconComponent = stat.icon;
+const PremiumStatCard = ({ stat }: { stat: any }) => {
+  const IconComponent = iconMap[stat.icon as keyof typeof iconMap] || ExperienceIcon;
   
   return (
     <motion.div
@@ -188,13 +180,144 @@ const PremiumStatCard = ({ stat }: { stat: typeof statsData[0] }) => {
 
 // Main Premium Stats Section Component
 const PremiumStatsSection = () => {
+  const [socialProofData, setSocialProofData] = useState<SocialProofData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchSocialProofData() {
+      try {
+        const { data, error } = await supabase
+          .from('socialproof')
+          .select('*')
+          .limit(1)
+          .single();
+
+        if (error) {
+          console.error('SocialProof data fetch error:', error);
+          // Varsayılan verileri kullan
+          setSocialProofData({
+            id: 1,
+            badge_text: 'Başarı Hikayemiz',
+            main_title: 'Rakamlarla Biz',
+            subtitle: 'İSG PRO\'nun başarı hikayesini sayılarla anlatıyoruz. Her rakam, müşterilerimizin güvenini ve kalitemizi yansıtıyor.',
+            stat1_number: 10,
+            stat1_suffix: '+',
+            stat1_label: 'Yıllık Tecrübe',
+            stat1_icon: 'ExperienceIcon',
+            stat2_number: 500,
+            stat2_suffix: '+',
+            stat2_label: 'Tamamlanan Proje',
+            stat2_icon: 'ProjectsIcon',
+            stat3_number: 25,
+            stat3_suffix: '+',
+            stat3_label: 'Uzman Personel',
+            stat3_icon: 'StaffIcon',
+            stat4_number: 99,
+            stat4_suffix: '%',
+            stat4_label: 'Müşteri Memnuniyeti',
+            stat4_icon: 'SatisfactionIcon',
+            background_image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
+          });
+        } else {
+          setSocialProofData(data);
+        }
+      } catch (error) {
+        console.error('SocialProof data fetch error:', error);
+        // Varsayılan verileri kullan
+        setSocialProofData({
+          id: 1,
+          badge_text: 'Başarı Hikayemiz',
+          main_title: 'Rakamlarla Biz',
+          subtitle: 'İSG PRO\'nun başarı hikayesini sayılarla anlatıyoruz. Her rakam, müşterilerimizin güvenini ve kalitemizi yansıtıyor.',
+          stat1_number: 10,
+          stat1_suffix: '+',
+          stat1_label: 'Yıllık Tecrübe',
+          stat1_icon: 'ExperienceIcon',
+          stat2_number: 500,
+          stat2_suffix: '+',
+          stat2_label: 'Tamamlanan Proje',
+          stat2_icon: 'ProjectsIcon',
+          stat3_number: 25,
+          stat3_suffix: '+',
+          stat3_label: 'Uzman Personel',
+          stat3_icon: 'StaffIcon',
+          stat4_number: 99,
+          stat4_suffix: '%',
+          stat4_label: 'Müşteri Memnuniyeti',
+          stat4_icon: 'SatisfactionIcon',
+          background_image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchSocialProofData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="text-center">
+            <div className="text-white text-xl">Yükleniyor...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!socialProofData) {
+    return null;
+  }
+
+  // Stats data'yı array'e çevir
+  const statsData = [
+    {
+      id: 1,
+      icon: socialProofData.stat1_icon,
+      number: socialProofData.stat1_number,
+      suffix: socialProofData.stat1_suffix,
+      label: socialProofData.stat1_label,
+      color: "text-blue-300",
+      gradient: "from-blue-400 to-blue-600"
+    },
+    {
+      id: 2,
+      icon: socialProofData.stat2_icon,
+      number: socialProofData.stat2_number,
+      suffix: socialProofData.stat2_suffix,
+      label: socialProofData.stat2_label,
+      color: "text-emerald-300",
+      gradient: "from-emerald-400 to-emerald-600"
+    },
+    {
+      id: 3,
+      icon: socialProofData.stat3_icon,
+      number: socialProofData.stat3_number,
+      suffix: socialProofData.stat3_suffix,
+      label: socialProofData.stat3_label,
+      color: "text-purple-300",
+      gradient: "from-purple-400 to-purple-600"
+    },
+    {
+      id: 4,
+      icon: socialProofData.stat4_icon,
+      number: socialProofData.stat4_number,
+      suffix: socialProofData.stat4_suffix,
+      label: socialProofData.stat4_label,
+      color: "text-orange-300",
+      gradient: "from-orange-400 to-orange-600"
+    }
+  ];
+
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Parallax Background Image */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80")',
+          backgroundImage: `url("${socialProofData.background_image}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
@@ -228,7 +351,7 @@ const PremiumStatsSection = () => {
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-8"
           >
             <span className="w-2 h-2 bg-[#4CAF50] rounded-full"></span>
-            <span className="text-white/90 font-medium">Başarı Hikayemiz</span>
+            <span className="text-white/90 font-medium">{socialProofData.badge_text}</span>
           </motion.div>
           
           <motion.h2 
@@ -237,7 +360,13 @@ const PremiumStatsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Rakamlarla <span className="text-[#4CAF50]">Biz</span>
+            {socialProofData.main_title.split(' ').map((word, index) => 
+              word === 'Biz' ? (
+                <span key={index} className="text-[#4CAF50]"> {word}</span>
+              ) : (
+                <span key={index}>{index === 0 ? word : ` ${word}`}</span>
+              )
+            )}
           </motion.h2>
           <motion.p 
             className="text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed"
@@ -245,8 +374,7 @@ const PremiumStatsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            İSG PRO&apos;nun başarı hikayesini sayılarla anlatıyoruz. 
-            Her rakam, müşterilerimizin güvenini ve kalitemizi yansıtıyor.
+            {socialProofData.subtitle}
           </motion.p>
         </motion.div>
 

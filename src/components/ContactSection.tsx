@@ -1,8 +1,72 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { ArrowRight, Mail, Phone, MapPin, Send } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+
+interface ContactData {
+  id: number;
+  badge_text: string;
+  main_title: string;
+  subtitle: string;
+  email: string;
+  phone: string;
+  address: string;
+  form_title: string;
+  form_subtitle: string;
+}
 
 export default function ContactSection() {
+  const [contactData, setContactData] = useState<ContactData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchContactData() {
+      try {
+        const { data, error } = await supabase
+          .from('contact')
+          .select('*')
+          .limit(1)
+          .single();
+
+        if (error) {
+          console.error('Contact data fetch error:', error);
+          // Varsayılan verileri kullan
+          setContactData({
+            id: 1,
+            badge_text: 'İletişime Geçin',
+            main_title: 'İşbirliğine Hazır mısınız?',
+            subtitle: 'Güvenli bir çalışma ortamı yaratma yolculuğunuzda size rehberlik edelim. Aşağıdaki formu doldurun, uzmanlarımız en kısa sürede size ulaşsın.',
+            email: 'info@isgsirketi.com',
+            phone: '+90 (555) 123 45 67',
+            address: 'Örnek Mah. Atatürk Cad. No:123, İstanbul',
+            form_title: 'Mesajınızı Gönderin',
+            form_subtitle: 'Uzmanlarımız en kısa sürede size ulaşacaktır.'
+          });
+        } else {
+          setContactData(data);
+        }
+      } catch (error) {
+        console.error('Contact data fetch error:', error);
+        // Varsayılan verileri kullan
+        setContactData({
+          id: 1,
+          badge_text: 'İletişime Geçin',
+          main_title: 'İşbirliğine Hazır mısınız?',
+          subtitle: 'Güvenli bir çalışma ortamı yaratma yolculuğunuzda size rehberlik edelim. Aşağıdaki formu doldurun, uzmanlarımız en kısa sürede size ulaşsın.',
+          email: 'info@isgsirketi.com',
+          phone: '+90 (555) 123 45 67',
+          address: 'Örnek Mah. Atatürk Cad. No:123, İstanbul',
+          form_title: 'Mesajınızı Gönderin',
+          form_subtitle: 'Uzmanlarımız en kısa sürede size ulaşacaktır.'
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchContactData();
+  }, []);
+
   return (
     <section id="contact" className="relative bg-gradient-to-br from-gray-50 to-white py-24 md:py-32 overflow-hidden">
       {/* Background Pattern */}
@@ -17,14 +81,14 @@ export default function ContactSection() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-[#4CAF50]/10 border border-[#4CAF50]/20 rounded-full px-6 py-3 mb-8">
               <span className="w-2 h-2 bg-[#4CAF50] rounded-full"></span>
-              <span className="text-[#4CAF50] font-medium text-sm">İletişime Geçin</span>
+              <span className="text-[#4CAF50] font-medium text-sm">{contactData?.badge_text || 'İletişime Geçin'}</span>
             </div>
             
             <h2 className="text-3xl md:text-5xl font-bold text-[#003366] leading-tight">
-              İşbirliğine <span className="text-[#4CAF50]">Hazır</span> mısınız?
+              {contactData?.main_title || 'İşbirliğine Hazır mısınız?'}
             </h2>
             <p className="mt-6 text-lg text-dark/80 leading-relaxed">
-              Güvenli bir çalışma ortamı yaratma yolculuğunuzda size rehberlik edelim. Aşağıdaki formu doldurun, uzmanlarımız en kısa sürede size ulaşsın.
+              {contactData?.subtitle || 'Güvenli bir çalışma ortamı yaratma yolculuğunuzda size rehberlik edelim. Aşağıdaki formu doldurun, uzmanlarımız en kısa sürede size ulaşsın.'}
             </p>
             
             {/* Enhanced Contact Info */}
@@ -35,8 +99,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#003366] text-sm">E-posta</p>
-                  <a href="mailto:info@isgsirketi.com" className="text-dark/80 hover:text-[#4CAF50] transition-colors">
-                    info@isgsirketi.com
+                  <a href={`mailto:${contactData?.email || 'info@isgsirketi.com'}`} className="text-dark/80 hover:text-[#4CAF50] transition-colors">
+                    {contactData?.email || 'info@isgsirketi.com'}
                   </a>
                 </div>
               </div>
@@ -47,8 +111,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#003366] text-sm">Telefon</p>
-                  <a href="tel:+905551234567" className="text-dark/80 hover:text-[#4CAF50] transition-colors">
-                    +90 (555) 123 45 67
+                  <a href={`tel:${contactData?.phone?.replace(/\s/g, '') || '+905551234567'}`} className="text-dark/80 hover:text-[#4CAF50] transition-colors">
+                    {contactData?.phone || '+90 (555) 123 45 67'}
                   </a>
                 </div>
               </div>
@@ -60,7 +124,7 @@ export default function ContactSection() {
                 <div>
                   <p className="font-semibold text-[#003366] text-sm">Adres</p>
                   <p className="text-dark/80">
-                    Örnek Mah. Atatürk Cad. No:123, İstanbul
+                    {contactData?.address || 'Örnek Mah. Atatürk Cad. No:123, İstanbul'}
                   </p>
                 </div>
               </div>
@@ -76,8 +140,8 @@ export default function ContactSection() {
             <form className="flex flex-col gap-y-8 relative z-10">
               {/* Form Header */}
               <div className="mb-4">
-                <h3 className="text-2xl font-bold text-white mb-2">Mesajınızı Gönderin</h3>
-                <p className="text-white/70">Uzmanlarımız en kısa sürede size ulaşacaktır.</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{contactData?.form_title || 'Mesajınızı Gönderin'}</h3>
+                <p className="text-white/70">{contactData?.form_subtitle || 'Uzmanlarımız en kısa sürede size ulaşacaktır.'}</p>
               </div>
               
               <div className="relative group">
