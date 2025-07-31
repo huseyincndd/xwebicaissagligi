@@ -13,7 +13,13 @@ export default function AdminPage() {
   const router = useRouter();
 
   console.log('AdminPage component rendered');
-  console.log('Current pathname:', window.location.pathname);
+  
+  // Client-side'da pathname'i kontrol et
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log('Current pathname:', window.location.pathname);
+    }
+  }, []);
 
   // Eğer zaten giriş yapılmışsa dashboard'a yönlendir
   useEffect(() => {

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Linkedin, Mail, Phone, MapPin, Award, Users, Clock, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import Image from 'next/image';
 
 interface TeamMember {
   id: number;
@@ -61,10 +62,11 @@ const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
         {/* Image Container */}
         <div className="relative h-64 overflow-hidden">
-          <img
+          <Image
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           
