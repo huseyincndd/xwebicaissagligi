@@ -13,12 +13,12 @@ interface NavbarData {
 
 const defaultNavigationLinks = [
   { name: 'Ana Sayfa', href: '#home' },
-  { name: 'Hizmetler', href: '#services' },
+  { name: 'Hatay OSGB Hizmetleri', href: '#services' },
   { name: 'Neden Biz', href: '#why-us' },
-  { name: 'Ekibimiz', href: '#team' },
-  { name: 'Süreç', href: '#process' },
+  { name: 'Hatay İSG Ekibi', href: '#team' },
+  { name: 'İSG Süreci', href: '#process' },
   { name: 'SSS', href: '#faq' },
-  { name: 'İletişim', href: '#contact' },
+  { name: 'Hatay İletişim', href: '#contact' },
 ];
 
 export default function Navbar() {

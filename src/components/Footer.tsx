@@ -39,9 +39,9 @@ export default function Footer() {
           // Varsayılan verileri kullan
           setFooterData({
             id: 1,
-            company_name: 'İSG PRO',
-            company_tagline: 'Güvenli Gelecek',
-            company_description: 'Türkiye\'nin öncü OSGB\'si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz.',
+            company_name: 'Kılıçoğlu OSGB',
+            company_tagline: 'Hatay\'ın Güvenilir İSG Partneri',
+            company_description: 'Hatay\'ın lider OSGB\'si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz. Hatay OSGB hizmetleri ile iş güvenliği danışmanlığı.',
             phone: '+90 (555) 123 45 67',
             email: 'info@isgsirketi.com',
             address: 'Örnek Mah. Atatürk Cad. No:123, İstanbul',
@@ -61,9 +61,9 @@ export default function Footer() {
         // Varsayılan verileri kullan
         setFooterData({
           id: 1,
-          company_name: 'İSG PRO',
-          company_tagline: 'Güvenli Gelecek',
-          company_description: 'Türkiye\'nin öncü OSGB\'si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz.',
+                      company_name: 'Kılıçoğlu OSGB',
+            company_tagline: 'Hatay\'ın Güvenilir İSG Partneri',
+            company_description: 'Hatay\'ın lider OSGB\'si olarak, iş yerlerini daha güvenli, çalışanları daha bilinçli ve işletmeleri daha verimli hale getirme misyonuyla çalışıyoruz. Hatay OSGB hizmetleri ile iş güvenliği danışmanlığı.',
           phone: '+90 (555) 123 45 67',
           email: 'info@isgsirketi.com',
           address: 'Örnek Mah. Atatürk Cad. No:123, İstanbul',

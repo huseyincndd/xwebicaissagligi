@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kilicogluosgb.com/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /hizmetler/
+Allow: /hakkimizda/
+Allow: /iletisim/
+Allow: /blog/
+
+# Crawl delay
+Crawl-delay: 1 
