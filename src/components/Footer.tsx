@@ -191,22 +191,22 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/hakkimizda" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#services" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    Hakkımızda
-                  </Link>
+                    Hatay OSGB Hizmetleri
+                  </a>
                 </li>
                 <li>
-                  <Link href="/hizmetler" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#why-us" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    Hizmetler
-                  </Link>
+                    Neden Biz
+                  </a>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#team" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    Blog
-                  </Link>
+                    Hatay İSG Ekibi
+                  </a>
                 </li>
               </ul>
             </div>
@@ -215,32 +215,32 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold text-[#003366] mb-4 flex items-center">
                 <span className="w-2 h-2 bg-[#4CAF50] rounded-full mr-3"></span>
-                Hizmetlerimiz
+                İSG Hizmetlerimiz
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link href="/hizmetler/risk-degerlendirmesi" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#services" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Risk Değerlendirmesi
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="/hizmetler/isg-egitimleri" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#services" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     İSG Eğitimleri
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="/hizmetler/acil-durum-planlamasi" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#services" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Acil Durum Planlaması
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="/hizmetler/saglik-taramalari" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#services" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Sağlık Taramaları
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -253,22 +253,22 @@ export default function Footer() {
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link href="/gizlilik-politikasi" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#contact" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Gizlilik Politikası
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="/kullanim-kosullari" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#contact" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Kullanım Koşulları
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link href="/kvkk-aydinlatma" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
+                  <a href="#contact" className="text-dark/70 hover:text-[#4CAF50] transition-colors flex items-center group">
                     <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     KVKK Aydınlatma Metni
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
