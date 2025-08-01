@@ -37,8 +37,17 @@ export default function AdminPage() {
     setError('');
 
     try {
-      // Basit authentication (environment variable'lar olmadan)
-      if (username === 'admin' && password === 'admin123') {
+      // Environment variable'lardan admin bilgilerini al
+      const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
+      const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+      
+      // Environment variables tanımlı değilse hata ver
+      if (!adminUsername || !adminPassword) {
+        setError('Admin paneli henüz yapılandırılmamış. Lütfen sistem yöneticisi ile iletişime geçin.');
+        return;
+      }
+      
+      if (username === adminUsername && password === adminPassword) {
         // Başarılı giriş - localStorage'a kaydet ve dashboard'a yönlendir
         localStorage.setItem('admin-auth', 'true');
         router.push('/admin/dashboard');
