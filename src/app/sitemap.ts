@@ -3,10 +3,16 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://kilicogluosgb.com'
   
-  // Hatay OSGB anahtar kelimeleri için özel sayfalar
-  const hatayPages = [
+  // Hatay ve İskenderun OSGB anahtar kelimeleri için özel sayfalar
+  const localPages = [
     {
       url: `${baseUrl}/hatay-osgb`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/iskenderun-osgb`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.9,
@@ -18,13 +24,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/iskenderun-isg-hizmetleri`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/hatay-risk-degerlendirmesi`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/iskenderun-risk-degerlendirmesi`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/hatay-isg-egitimleri`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/iskenderun-isg-egitimleri`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
@@ -110,7 +134,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
-    // Hatay OSGB anahtar kelime sayfaları
-    ...hatayPages,
+    // Hatay ve İskenderun OSGB anahtar kelime sayfaları
+    ...localPages,
   ]
 } 

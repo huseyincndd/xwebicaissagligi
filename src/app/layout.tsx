@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "Kılıçoğlu OSGB - Hatay'ın En Güvenilir İş Sağlığı ve Güvenliği Hizmetleri",
     template: "%s | Kılıçoğlu OSGB Hatay"
   },
-  description: "Hatay'ın lider OSGB'si Kılıçoğlu OSGB. İş sağlığı ve güvenliği, risk değerlendirmesi, İSG eğitimleri, sağlık taramaları. Hatay OSGB hizmetleri, Hatay iş güvenliği danışmanlığı için bize ulaşın.",
+  description: "İskenderun'un lider OSGB'si Kılıçoğlu OSGB. İş sağlığı ve güvenliği, risk değerlendirmesi, İSG eğitimleri, sağlık taramaları. Hatay OSGB hizmetleri, İskenderun iş güvenliği danışmanlığı için bize ulaşın.",
   keywords: [
     "Hatay OSGB",
     "OSGB Hatay",
@@ -38,7 +38,12 @@ export const metadata: Metadata = {
     "Hatay İş Sağlığı",
     "Hatay OSGB Firması",
     "Hatay'da OSGB hizmeti",
-    "Hatay iş sağlığı danışmanlığı"
+    "Hatay iş sağlığı danışmanlığı",
+    "İskenderun OSGB",
+    "İskenderun İSG Hizmetleri",
+    "İskenderun İş Güvenliği",
+    "İskenderun İş Sağlığı",
+    "İskenderun OSGB Firması"
   ],
   authors: [{ name: "Kılıçoğlu OSGB" }],
   creator: "Kılıçoğlu OSGB",
@@ -57,7 +62,7 @@ export const metadata: Metadata = {
     locale: 'tr_TR',
     url: 'https://kilicogluosgb.com',
     title: 'Kılıçoğlu OSGB - Hatay İş Sağlığı ve Güvenliği Hizmetleri',
-    description: 'Hatay\'ın güvenilir OSGB\'si Kılıçoğlu OSGB. İş sağlığı ve güvenliği, risk değerlendirmesi, İSG eğitimleri, sağlık taramaları.',
+    description: 'İskenderun\'un güvenilir OSGB\'si Kılıçoğlu OSGB. İş sağlığı ve güvenliği, risk değerlendirmesi, İSG eğitimleri, sağlık taramaları.',
     siteName: 'Kılıçoğlu OSGB',
     images: [
       {

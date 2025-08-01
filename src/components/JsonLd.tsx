@@ -9,17 +9,30 @@ export default function JsonLd() {
     "description": "Hatay'ın lider OSGB'si Kılıçoğlu OSGB. İş sağlığı ve güvenliği, risk değerlendirmesi, İSG eğitimleri, sağlık taramaları. Hatay OSGB hizmetleri, Hatay iş güvenliği danışmanlığı.",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Hatay",
+      "streetAddress": "Süleymaniye Mahallesi Kanatlı Caddesi Meshedi Apartmanı 133/B",
+      "addressLocality": "İskenderun",
       "addressRegion": "Hatay",
-      "addressCountry": "TR"
+      "addressCountry": "TR",
+      "postalCode": "31200"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+90-XXX-XXX-XXXX",
-      "contactType": "customer service",
-      "areaServed": "TR",
-      "availableLanguage": "Turkish"
-    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+90-542-404-8724",
+        "contactType": "customer service",
+        "contactPerson": "İbrahim Kara",
+        "areaServed": "TR",
+        "availableLanguage": "Turkish"
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+90-532-563-7736",
+        "contactType": "customer service",
+        "contactPerson": "Turgay Kılıçoğlu",
+        "areaServed": "TR",
+        "availableLanguage": "Turkish"
+      }
+    ],
     "sameAs": [
       "https://www.linkedin.com/company/kilicogluosgb",
       "https://twitter.com/kilicogluosgb",
